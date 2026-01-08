@@ -7,9 +7,9 @@ printSecond = do
    where greeting = "Yarrrrr"
 main :: IO ()
 main = do
-   putStrLn greeting
+   -- putStrLn greeting
    printSecond
-      where greeting = "Yarrrrr"
+      -- where greeting = "Yarrrrr"
 
 
 -- Fix 2: Make it global
