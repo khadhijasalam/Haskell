@@ -26,13 +26,12 @@ sentences = firstSen ++ secondSen ++ thirdSen ++ fourthSen
 -- Could frame thy fearful symmetry?
 -- Implement this
 myLines :: String -> [String]
-myLines s = 
-    let word = takeWhile (/='\n') s
-        rest = dropWhile (=='\n') (dropWhile (/= '\n') s)
-    in if null word
-        then []
-        else 
-           word : myWords rest
+myLines "" = []
+myLines s  =
+    let line = takeWhile (/= '\n') s
+        rest = dropWhile (== '\n') (dropWhile (/= '\n') s)
+    in line : myLines rest
+
 -- What we want 'myLines sentences' to equal
 shouldEqual =
     [ "Tyger Tyger, burning bright"
@@ -45,3 +44,23 @@ main :: IO ()
 main =
     print $ "Are they equal? "
         ++ show (myLines sentences == shouldEqual)
+
+
+
+-- Q. 3
+myWordsNew :: String -> Char -> [String]
+myWordsNew x p= 
+    let 
+       word = takeWhile (/=p) x
+       rest = dropWhile (==p) (dropWhile (/= p) x )
+    in if null word
+        then []
+        else 
+           word : myWordsNew rest p
+
+myLinesNew :: String ->Char -> [String]
+myLinesNew "" p= []
+myLinesNew s p =
+    let line = takeWhile (/= p) s
+        rest = dropWhile (== p) (dropWhile (/= p) s)
+    in line : myLines rest
