@@ -1,3 +1,4 @@
+import qualified Distribution.SPDX as Q
 data Price =
 -- (a)
     Price Integer deriving (Eq, Show)
@@ -24,11 +25,11 @@ data Airline =
     deriving (Eq, Show)
 
 
-data Vehicle = Car Manufacturer Price
--- (k) (l) [2] [3]
-    | Plane Airline
--- (m) [4]
-    deriving (Eq, Show)
+-- data Vehicle = Car Manufacturer Price
+-- -- (k) (l) [2] [3]
+--     | Plane Airline
+-- -- (m) [4]
+--     deriving (Eq, Show)
 
 
 
@@ -73,3 +74,30 @@ isPlane _ = False
 
 areCars :: [Vehicle] -> [Bool]
 areCars xs = map isCar xs
+
+-- Q.3
+getManu :: Vehicle -> Manufacturer
+getManu (Car m p) = m
+-- getManu :: Vehicle -> Maybe Manufacturer
+-- getManu (Car m _) = Just m
+-- getManu _         = Nothing
+
+
+-- Q.4
+-- Throw an error as the patter doesnt match
+-- Note: *** Exception: vehicles_419.hs:79:1-21: Non-exhaustive patterns in function getManu
+
+-- -- Q.5
+-- data Vehicle = Car Manufacturer Price
+-- -- (k) (l) [2] [3]
+--     | Plane Airline Size
+-- -- (m) [4]
+--     deriving (Eq, Show)
+
+-- data Size = Size Integer
+--     deriving (Eq, Show)
+
+
+-- isPlane :: Vehicle -> Bool
+-- isPlane (Plane _ _)= True
+-- isPlane _ = False
